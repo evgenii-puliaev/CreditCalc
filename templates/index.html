@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <title>Credit Calc</title>
+        <link rel="stylesheet" href="../static/styles.css">
+    </head>
+    <body>
+        <div class="header">
+            <h1 class="title">
+                <a href="{{ url_for('main') }}">
+                    CreditCalc
+                </a>
+            </h1>
+            <div class="button" id="auth-but">
+                {% if name %}
+                    <a href="{{ url_for('logout') }}">Выйти для {{ name }}</a>
+                {% else %}
+                    <a href="{{ url_for('login') }}">Авторизоваться</a>
+                {% endif %}
+            </div>
+        </div>
+        <div class="message">
+            {% if name %}
+                <h1>Здравствуйте, {{ name }}</h1>
+            {% else %}
+                <h1>Здравствуйте!</h1>
+            {% endif %}
+            <p>Мы поможем вам расчитать кредит</p>
+        </div>
+        <div class="menu">
+            <div class="menu-block" id="menu-block-1">
+                <a href="{{ url_for('count') }}">
+                    <h2>Рассчитать</h2>
+                </a>
+            </div>
+            {% if name %}
+                <div class="menu-block" id="menu-block-2">
+                    <a href="{{ url_for('history') }}">
+                        <h2>Посмотреть историю</h2>
+                    </a>
+                </div>
+            {% else %}
+                <div class="menu-block" id="menu-block-2">
+                    <h2>Авторизируйтесь чтобы посмотреть историю</h2>
+                </div>
+            {% endif %}
+        </div>
+    </body>
+</html>
