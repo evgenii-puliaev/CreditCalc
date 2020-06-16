@@ -1,0 +1,120 @@
+/*share*/
+body {
+    background-color: #edeff3;
+}
+input, select {
+    border-radius: 5px;
+    border: 3px solid blueviolet;
+    padding: 10px;
+    background-color: white;
+}
+button {
+    border-radius: 5px;
+    border: 3px solid blueviolet;
+    text-align: center;
+    padding: 10px;
+    color: white;
+    background-color: blueviolet;
+    cursor: pointer;
+}
+
+/*header*/
+.header {
+    height: fit-content;
+    width: auto;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: blueviolet;
+    display: grid;
+    grid-template-columns: auto 20%;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    margin-bottom: 30px;
+}
+.title {
+    margin: auto auto auto 0;
+}
+.title a {
+    color: white;
+    text-decoration: none;
+}
+
+/*main page*/
+.menu {
+    background-color: white;
+    border-radius: 10px;
+    margin: auto;
+    max-width: 1000px;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: auto auto;
+}
+.menu-block {
+    margin: 15px;
+    text-align: center;
+    border: 4px solid blueviolet;
+    border-radius: 10px;
+    color: blueviolet;
+}
+.menu a {
+    text-decoration: none;
+}
+#message {
+    margin: 0;
+    padding: 10px;
+    grid-column: 1 / 3;
+    grid-row: 1;
+    border-radius: 10px 10px 0 0;
+    color: white;
+    background-color: blueviolet;
+}
+#menu-block-1 {
+    grid-column: 1;
+    grid-row: 2;
+}
+#menu-block-2 {
+    grid-column: 2;
+    grid-row: 2;
+}
+
+/*calculator*/
+.calc_content {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, auto);
+}
+.calc_block {
+    background-color: white;
+    border-radius: 5px;
+    margin: 10px;
+    padding: 10px;
+}
+#calc_params {
+    grid-column: 1 / 3;
+    grid-row: 1;
+}
+#calc_result {
+    grid-column: 1;
+    grid-row: 2;
+}
+#offer_result {
+    grid-column: 2;
+    grid-row: 2;
+}
+.calc_result_table {
+    border: 2px solid blueviolet;
+    border-radius: 5px;
+}
+
+/*login page*/
+.login-form {
+    padding: 10px;
+    margin: auto;
+    text-align: center;
+    width: fit-content;
+    height: fit-content;
+    border-radius: 10px;
+    box-shadow: 0 1px 10px bisque;
+}
+#auth-but {
+    grid-column: 2;
+}

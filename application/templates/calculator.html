@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Credit Calc</title>
+        <link rel="stylesheet" href="../static/styles.css">
+        <link rel="shortcut icon" href="../static/favicon.ico" type="image/x-icon">
+    </head>
+    <body>
+
+        <div class="header">
+            <h1 class="title">
+                <a href="{{ url_for('main') }}">CreditCalc</a>
+            </h1>
+            {#<div class="button" id="auth-but">
+                {% if name %}
+                    <a href="{{ url_for('logout') }}">Выйти для {{ name }}</a>
+                {% else %}
+                    <a href="{{ url_for('login') }}">Авторизоваться</a>
+                {% endif %}
+            </div>#}
+        </div>
+
+        <div class="calc_content">
+            <div class="calc_block" id="calc_params">
+                <h2>Параметры кредита</h2>
+                <form method="post">
+                    <input type="number" name="credit_amount" placeholder="Сумма кредита" min="1" required>
+                    <select name="time" required>
+                        {% for time in times %}
+                            <option value="{{ time.val }}">{{ time.name }}</option>
+                        {% endfor %}
+                    </select>
+                    <input type="number" name="rate" placeholder="Ставка" step="0.01" min="1" required>
+                    <select name="credit_type" required>
+                        {% for type in credit_types %}
+                            <option value="{{ type.val }}">{{ type.name }}</option>
+                        {% endfor %}
+                    </select>
+                    <button type="submit" formaction="/count">Рассчитать кредит</button>
+                    <button type="submit" formaction="/find_banks">Найти банки</button>
+                </form>
+            </div>
+
+            {% if count_result %}
+                <div class="calc_block" id="calc_result">
+                    <h3>Кредитный калькулятор</h3>
+                    <div>
+                        <b>Общая выплата:</b>&nbsp;{{ count_result.total_payout }}<br>
+                        <b>Переплата:</b>&nbsp;{{ count_result.overpayment }}<br>
+                    </div>
+                    <table class="calc_result_table">
+                        <tr>
+                            <th>Сумма ежемесячного платежа</th>
+                            <th>Погашение основного долга</th>
+                            <th>Выплата процентов</th>
+                            <th>Остаток</th>
+                        </tr>
+                        {% for line in count_result.table %}
+                            <tr>
+                                <td>{{ line.monthly_payment_amount }}</td>
+                                <td>{{ line.repayment_of_principal }}</td>
+                                <td>{{ line.interest_payment }}</td>
+                                <td>{{ line.left_to_pay }}</td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            {% endif %}
+
+            {% if offers %}
+                <div class="calc_block" id="offer_result">
+                    <h3>Банковские предложения</h3>
+                    <table class="calc_result_table">
+                        <tr>
+                            <th>Название банка</th>
+                            <th>Название тарифа</th>
+                            <th>Ставка, %</th>
+                            <th>Общая выплата</th>
+                            <th>Переплата</th>
+                        </tr>
+                        {% for offer in offers %}
+                            <tr>
+                                <td>{{ offer.bank_name }}</td>
+                                <td>{{ offer.tariff_name }}</td>
+                                <td>{{ offer.rate }}</td>
+                                <td>{{ offer.total_payout }}</td>
+                                <td>{{ offer.overpayment }}</td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            {% endif %}
+        </div>
+
+
+
+    </body>
+</html>
